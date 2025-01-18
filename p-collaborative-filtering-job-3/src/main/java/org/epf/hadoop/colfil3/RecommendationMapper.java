@@ -11,20 +11,20 @@ public class RecommendationMapper extends Mapper<LongWritable, Text, Text, UserR
     @Override
     protected void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
-        String[] parts = value.toString().split("\t");
-        if (parts.length != 2) return;
+        String[] parti = value.toString().split("\t");
+        if (parti.length != 2) return;
 
-        String[] users = parts[0].split(",");
+        String[] users = parti[0].split(",");
         if (users.length != 2) return;
 
-        int commonFriends = Integer.parseInt(parts[1]);
+        int amiComuns = Integer.parseInt(parti[1]);
 
         outputKey.set(users[0]);
         context.write(outputKey, new UserRecommendation(
-                users[0], users[1], commonFriends));
+                users[0], users[1], amiComuns));
 
         outputKey.set(users[1]);
         context.write(outputKey, new UserRecommendation(
-                users[1], users[0], commonFriends));
+                users[1], users[0], amiComuns));
     }
 }

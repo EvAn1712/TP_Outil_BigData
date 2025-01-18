@@ -31,7 +31,7 @@ public class RecommendationReducer extends Reducer<Text, UserRecommendation, Tex
                 topRecommendations.pollLast();
             }
         }
-
+        // Écriture des recommandations
         if (!topRecommendations.isEmpty()) {
             List<String> recommendations = new ArrayList<>();
             for (UserRecommendation rec : topRecommendations) {

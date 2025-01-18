@@ -32,7 +32,6 @@ public class ColFilJob3 extends Configured implements Tool {
         Job job = Job.getInstance(conf, "ColFilJob3");
         job.setJarByClass(getClass());
 
-        // Définir le format d'entrée
         job.setInputFormatClass(TextInputFormat.class);
 
         job.setMapperClass(RecommendationMapper.class);
@@ -44,10 +43,6 @@ public class ColFilJob3 extends Configured implements Tool {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 
-        // Un seul reducer comme demandé dans l'énoncé
-        job.setNumReduceTasks(1);
-
-        // Définir les chemins d'entrée et de sortie
         FileInputFormat.addInputPath(job, new Path(inputPath));
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
 
